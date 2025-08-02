@@ -1,0 +1,15 @@
+FROM python:3.9-slim
+
+WORKDIR /app
+
+# Copiar archivos al contenedor
+COPY requirements_output.txt .
+COPY output.py .
+
+# Crear carpeta de datos en el contenedor
+RUN mkdir -p /data /output
+
+# Instalar dependencias
+RUN pip install --upgrade pip && pip install --no-cache-dir -r requirements_output.txt
+
+CMD ["python", "output.py"]

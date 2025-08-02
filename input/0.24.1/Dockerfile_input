@@ -1,0 +1,14 @@
+FROM python:3.9-slim
+
+WORKDIR /app
+
+# Copiar archivos al contenedor
+COPY requirements_input.txt .
+COPY input.py .
+        
+RUN mkdir -p /data /input
+
+# Instalar dependencias
+RUN pip install --upgrade pip && pip install --no-cache-dir -r requirements_input.txt
+    
+CMD ["python", "input.py"]
